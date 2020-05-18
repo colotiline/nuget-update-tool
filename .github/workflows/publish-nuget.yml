@@ -26,6 +26,6 @@ jobs:
     - name: Pack
       run: cd ./src/tool && dotnet pack --configuration Release
     - name: Publish
-      run: cd ./src/tool/nupkg && dotnet nuget push ./*.nupkg --skip-duplicate --no-symbols --api-key ${{secrets.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
+      run: cd ./src/tool/nupkg && dotnet nuget push ./*.nupkg --skip-duplicate --no-symbols --api-key ${{secrets.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json --symbol-api-key ${{secrets.NUGET_API_KEY}}
      
     
