@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
 
-    <PackageId>NuGet.UpdateTool</PackageId>    
+    <PackageId>Colotiline.NuGet.UpdateTool</PackageId>    
     <Title>Update NuGet packages</Title>
     <Version>1.0.0</Version>
     <Authors>Constantine Colotiline</Authors>
