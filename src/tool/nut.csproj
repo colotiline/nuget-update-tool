@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>nuget-update</ToolCommandName>
+    <PackageOutputPath>./nupkg</PackageOutputPath>
+
+    <ProjectGuid>{b883a7ef-57c8-4c5c-9653-a2065bf9a0e7}</ProjectGuid>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="3.0.0" />
+    <PackageReference Include="Serilog" Version="2.9.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
+  </ItemGroup>
+
+</Project>
