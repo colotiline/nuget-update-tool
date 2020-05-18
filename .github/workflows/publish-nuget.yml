@@ -23,4 +23,22 @@ jobs:
       run: cd ./tests/tool && dotnet restore
     - name: Test
       run: cd ./tests/tool && dotnet test --no-restore --verbosity normal
-  
+
+  publish:
+    
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.101
+        source-url: https://nuget.pkg.github.com/<organization>/index.json
+      env:
+        NUGET_AUTH_TOKEN: ${{secrets.NUGET_API_KEY}}
+    - name: Pack
+      run: cd ./src/tool && dotnet pack --configuration Release
+    - name: Publish
+      run: cd ./src/tool/nupkg && dotnet nuget push ./*.nupkg --skip-duplicate --no-symbols true
+     
+    
