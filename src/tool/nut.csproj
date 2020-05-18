@@ -5,7 +5,7 @@
 
     <PackageId>Colotiline.NuGet.UpdateTool</PackageId>    
     <Title>Update .NET Core NuGet packages to the latest version.</Title>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
     <Authors>Constantine Colotiline</Authors>
     <Language>English</Language>
     <PackageDescription>
@@ -22,7 +22,7 @@
       https://github.com/colotiline/nuget-update-tool
     </RepositoryUrl>
     <PackAsTool>true</PackAsTool>
-    <ToolCommandName>nuget-update</ToolCommandName>
+    <ToolCommandName>dotnet-nuget-update</ToolCommandName>
     <PackageOutputPath>./nupkg</PackageOutputPath>
 
     <ProjectGuid>{b883a7ef-57c8-4c5c-9653-a2065bf9a0e7}</ProjectGuid>
