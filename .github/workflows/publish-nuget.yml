@@ -17,9 +17,6 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.101
-        source-url: https://nuget.pkg.github.com/colotiline/index.json
-      env:
-        NUGET_AUTH_TOKEN: ${{secrets.NUGET_API_KEY}}
     - name: Restore src
       run: cd ./src/tool && dotnet restore
     - name: Restore test
