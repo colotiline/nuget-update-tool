@@ -2,7 +2,18 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    
+
+    <PackageId>NuGet.UpdateTool</PackageId>    
+    <Title>Update NuGet packages</Title>
+    <Version>1.0.0</Version>
+    <Authors>Constantine Colotiline</Authors>
+    <PackageDescription>
+      Update .NET Core NuGet packages to the latest version.
+    </PackageDescription>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>
+      https://github.com/colotiline/nuget-update-tool
+    </RepositoryUrl>
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>nuget-update</ToolCommandName>
     <PackageOutputPath>./nupkg</PackageOutputPath>
