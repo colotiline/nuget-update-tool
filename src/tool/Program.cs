@@ -76,7 +76,7 @@ namespace nut
                         {
                             logger.Information
                             (
-                                "Update '{cSharpProjectPath}.'",
+                                "Updating '{cSharpProjectPath}.'",
                                 cSharpProjectPath
                             );
 
@@ -93,13 +93,13 @@ namespace nut
                                 packages.Length
                             );
 
-                            try
+                            foreach (var package in packages)
                             {
-                                foreach (var package in packages)
+                                try
                                 {
                                     logger.Information
                                     (
-                                        "Update package '{package}'.",
+                                        "Updating package '{package}'.",
                                         package
                                     );
 
@@ -109,12 +109,11 @@ namespace nut
                                         Path.GetDirectoryName(cSharpProjectPath)
                                     );
                                 }
+                                catch(Exception exception)
+                                {
+                                    logger.Fatal(exception, "Exception.");
+                                }
                             } 
-                            catch(Exception exception)
-                            {
-                                logger.Fatal(exception, "Can't execute.");
-                                break;
-                            }
                         }
 
                         async Task RunDotnetAddPackageAsync
@@ -165,17 +164,6 @@ namespace nut
                                 logger.Error
                                 (
                                     await processErrorReader.ReadLineAsync()
-                                );
-                            }
-
-                            if (!process.HasExited)
-                            {
-                                process.Kill();
-
-                                logger.Error
-                                (
-                                    "Process killed with code '{code}'.",
-                                    process.ExitCode
                                 );
                             }
                         }
