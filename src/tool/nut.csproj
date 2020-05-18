@@ -22,7 +22,7 @@
       https://github.com/colotiline/nuget-update-tool
     </RepositoryUrl>
     <PackAsTool>true</PackAsTool>
-    <ToolCommandName>dotnet-nuget-update</ToolCommandName>
+    <ToolCommandName>dotnet-nu</ToolCommandName>
     <PackageOutputPath>./nupkg</PackageOutputPath>
 
     <ProjectGuid>{b883a7ef-57c8-4c5c-9653-a2065bf9a0e7}</ProjectGuid>
