@@ -4,13 +4,20 @@
     <OutputType>Exe</OutputType>
 
     <PackageId>Colotiline.NuGet.UpdateTool</PackageId>    
-    <Title>Update NuGet packages</Title>
-    <Version>1.0.0</Version>
+    <Title>Update .NET Core NuGet packages to the latest version.</Title>
+    <Version>1.0.1</Version>
     <Authors>Constantine Colotiline</Authors>
+    <Language>English</Language>
     <PackageDescription>
       Update .NET Core NuGet packages to the latest version.
     </PackageDescription>
+    <Summary>
+      Update .NET Core NuGet packages to the latest version.
+    </Summary>
+    <PackageIcon>icon.png</PackageIcon>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>NuGet;update</PackageTags>
+    <IsTool>true</IsTool>
     <RepositoryUrl>
       https://github.com/colotiline/nuget-update-tool
     </RepositoryUrl>
@@ -21,6 +28,10 @@
     <ProjectGuid>{b883a7ef-57c8-4c5c-9653-a2065bf9a0e7}</ProjectGuid>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="assets\images\icon.png" Pack="true" PackagePath="\"/>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="3.0.0" />
