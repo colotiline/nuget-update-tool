@@ -4,7 +4,7 @@
 
 ![.NET Core](https://github.com/colotiline/nuget-update-tool/workflows/.NET%20Core/badge.svg)
 
-## Algorythm
+## Algorithm
 
 - Going through all subdirectories in provided directory.
 - Looking for .csproj files.
