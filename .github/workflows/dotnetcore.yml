@@ -20,6 +20,7 @@ jobs:
     - name: Restore src
       run: cd ./src/tool && dotnet restore
     - name: Restore test
-      run: cd ../../tests/tool && dotnet restore
+      run: cd ./tests/tool && dotnet restore
     - name: Test
-      run: dotnet test --no-restore --verbosity normal
+      run: cd ./tests/tool && dotnet test --no-restore --verbosity normal
+  
