@@ -17,5 +17,9 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.101
+    - name: Restore src
+      run: cd ./src/tool && dotnet restore
+    - name: Restore test
+      run: cd ../../tests/tool && dotnet restore
     - name: Test
-      run: cd ./tests/tool && dotnet test --verbosity normal
+      run: dotnet test --no-restore --verbosity normal
