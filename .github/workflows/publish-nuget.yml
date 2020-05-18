@@ -18,8 +18,6 @@ jobs:
       with:
         dotnet-version: 3.1.101
         source-url: https://nuget.pkg.github.com/colotiline/index.json
-      env:
-        NUGET_AUTH_TOKEN: ${{secrets.NUGET_API_KEY}}
     - name: Restore src
       run: cd ./src/tool && dotnet restore
     - name: Restore test
@@ -29,6 +27,6 @@ jobs:
     - name: Pack
       run: cd ./src/tool && dotnet pack --configuration Release
     - name: Publish
-      run: cd ./src/tool/nupkg && dotnet nuget push ./*.nupkg --skip-duplicate --no-symbols true
+      run: cd ./src/tool/nupkg && dotnet nuget push ./*.nupkg --skip-duplicate --no-symbols --api-key ${{secrets.NUGET_API_KEY}}
      
     
