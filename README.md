@@ -13,4 +13,8 @@
 ## Get started
 
 - Install NuGet tool https://www.nuget.org/packages/Colotiline.NuGet.UpdateTool/.
-- Run `dotnet nu -d ./path/to/your/directory`.
+- Run `dotnet nu ./path/to/your/directory`.
+
+## Help
+
+Run `dotnet nu -h`.
