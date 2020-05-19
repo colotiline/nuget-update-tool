@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using McMaster.Extensions.CommandLineUtils;
 using nut.Entities;
 using Serilog;
+using Serilog.Sinks.SystemConsole.Themes;
 
 namespace nut
 {
@@ -24,8 +25,45 @@ namespace nut
             {
                 return new LoggerConfiguration()
                     .WriteTo
-                    .Console()
+                    .Console
+                    (
+                        theme: CreateConsoleTheme()
+                    )
                     .CreateLogger();
+
+                SystemConsoleTheme CreateConsoleTheme()
+                {
+                    return new SystemConsoleTheme
+                    (
+                        new Dictionary
+                        <
+                            ConsoleThemeStyle, 
+                            SystemConsoleThemeStyle
+                        >
+                        {
+                            [ConsoleThemeStyle.LevelWarning] = 
+                                new SystemConsoleThemeStyle 
+                                { 
+                                    Foreground = ConsoleColor.White, 
+                                    Background = ConsoleColor.Yellow 
+                                },
+                            
+                            [ConsoleThemeStyle.LevelError] = 
+                                new SystemConsoleThemeStyle 
+                                {
+                                    Foreground = ConsoleColor.White, 
+                                    Background = ConsoleColor.Red 
+                                },
+                            
+                            [ConsoleThemeStyle.LevelFatal] = 
+                                new SystemConsoleThemeStyle 
+                                { 
+                                    Foreground = ConsoleColor.White, 
+                                    Background = ConsoleColor.Red 
+                                }
+                        }
+                    );
+                }
             }
 
             CommandLineApplication CreateCommandLineApplication()
@@ -33,21 +71,17 @@ namespace nut
                 var app = new CommandLineApplication();
             
                 app.HelpOption("-h|--help");
-
-                var directoryOption = app.Option
-                (
-                    "-d|--directory <DIRECTORY>",
-                    "Directory update path.",
-                    CommandOptionType.SingleValue
-                );
                 
+                var directoryArgument = 
+                    app.Argument("directory", "Directory update path.");
+
                 app.OnExecuteAsync
                 (
                     async cancellationToken => 
                     {
                         var isValid = ValidateArgs
                         (
-                            directoryOption
+                            directoryArgument
                         );
 
                         if (!isValid)
@@ -57,20 +91,20 @@ namespace nut
 
                         var cSharpProjectsPaths = GetCsharpProjectsPaths
                         (
-                            directoryOption.Value()
+                            directoryArgument.Value
+                        );
+
+                        logger.Information
+                        (
+                            "Found {cSharpProjectsPathsLength} " +
+                            ".csproj file(s).",
+                            cSharpProjectsPaths.Length
                         );
 
                         if (!cSharpProjectsPaths.Any())
                         {
-                            logger.Warning("No '.csproj' files.");
                             return;
                         }
-
-                        logger.Information
-                        (
-                            "Found {cSharpProjectsPathsLength} .csproj.",
-                            cSharpProjectsPaths.Length
-                        );
 
                         foreach (var cSharpProjectPath in cSharpProjectsPaths)
                         {
@@ -89,7 +123,7 @@ namespace nut
 
                             logger.Information
                             (
-                                "Got {packagesLength} package(s).",
+                                "Found {packagesLength} package(s).",
                                 packages.Length
                             );
 
@@ -99,7 +133,7 @@ namespace nut
                                 {
                                     logger.Information
                                     (
-                                        "Updating package '{package}'.",
+                                        "Updating package {package}.",
                                         package
                                     );
 
@@ -174,17 +208,17 @@ namespace nut
 
                 bool ValidateArgs
                 (
-                    CommandOption directoryOption
+                    CommandArgument directoryArgument
                 )
                 {
-                    if (!directoryOption.HasValue())
+                    if (string.IsNullOrEmpty(directoryArgument.Value))
                     {
                         logger.Fatal("Directory update path can't be empty.");
 
                         return false;
                     }
 
-                    if (!Directory.Exists(directoryOption.Value()))
+                    if (!Directory.Exists(directoryArgument.Value))
                     {
                         logger.Fatal("Directory update path doesn't exist.");
 
